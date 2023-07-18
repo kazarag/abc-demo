@@ -1,0 +1,61 @@
+﻿@model IEnumerable<NguyenDoHoangKhang.Models.SACH>
+@{
+
+    Layout = "";
+}
+<style>
+    .hinh {
+        overflow: hidden;
+    }
+
+    .mota {
+        line-height: 24px;
+        height: 72px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .linkHover:hover {
+        color: red;
+        text-decoration: none;
+    }
+</style>
+@helper Truncate(string s, int lenght)
+{
+    if (s.Length < lenght)
+    {
+        @s
+}
+else
+{
+        @s.Substring(0,lenght)<text>...</text>
+}
+}
+<div class="container">
+    <h2 class="text-center">SÁCH BÁN NHIỀU</h2>
+
+    <!--LEFT-->
+    <hr>
+    <div class="row">
+        @foreach (var sach in Model)
+        {
+            <div class="col-lg-6 col-md-6">
+                <div class="media-object-default">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="@Url.Action("BookDetail", "SachOnline", new { @id = sach.MaSach })">
+                                <img class="media-object imgsachbannhieu" src="~/Images/@sach.AnhBia" alt="placeholder image">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 href="@Url.Action("BookDetail", "SachOnline", new { @id = sach.MaSach })" class="media-heading">@sach.TenSach</h4>
+                            <h4 class="mota">@sach.MoTa</h4>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        }
+    </div>
+    <hr>
+</div>
