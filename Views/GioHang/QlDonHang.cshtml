@@ -1,0 +1,46 @@
+﻿@model IEnumerable<NguyenDoHoangKhang.Models.DonHang>
+@using NguyenDoHoangKhang.Models;
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2 style="text-align:center;">Thông Tin Giỏ Hàng</h2>
+<table align="center" border="1">
+    <tr style="text-align:center; font-weight:bold;">
+        <td>Mã Sách</td>
+        <td>Tên Sách</td>
+        <td>Ảnh Bìa</td>
+        <td>Số Lượng</td>
+        <td>Đơn Giá</td>
+        <td>Thành Tiền</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr style="text-align:center; font-weight:bold;">
+        <td align="center">@item.iMaSach</td>
+        <td>@item.sTenSach</td>
+        <td><img src="~/Images/@item.sAnhBia" style="width:100px;"></td>
+        <td align="center">@item.dSoLuong</td>
+        <td align="center">@string.Format("{0:#,##0,0}", @item.dDonGia)</td>
+        <td align="center">@item.ngaydat</td>
+        <td align="center">@item.ngaygiao</td>
+        <td align="center">@string.Format("{0:#,##0,0}", @item.dThanhTien)</td>
+    </tr>
+    }
+    <tr>
+    <tr>
+        <td colspan="3" style="text-align:right; color:red; font-weight:bold; padding-right:5px;">
+            Số lượng sách: @string.Format("{0:#,##0}", @ViewBag.TongSoLuong)
+        </td>
+        <td colspan="3" style="text-align:right; color:red; font-weight:bold; padding-right:5px;">
+            Tổng tiền: @string.Format("{0:#,##0,0}", @ViewBag.TongTien) VNĐ
+        </td>
+
+    </tr>
+    <tr style="font-weight:bold; color:blue; text-align:right;">
+        <td colspan="9" style="padding-right:5px;">
+            @Html.ActionLink("TRỞ VỀ GIỎ HÀNG", "QlDonHang", "GioHang")
+        </td>
+    </tr>
+</table>

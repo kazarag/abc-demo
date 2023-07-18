@@ -1,0 +1,45 @@
+﻿@model NguyenDoHoangKhang.Models.SACH
+@{
+    ViewBag.Title = "ChiTietSach";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
+<style type="text/css">
+    .tensach {
+        text-align: center;
+        color: seagreen;
+        background: linear-gradient(lightblue,white);
+        padding-top: 10px;
+        font-weight: bold;
+    }
+
+    .anhbia {
+        width: 350px;
+    }
+
+    .muasach {
+        margin-left: 70%;
+        text-align: center;
+    }
+</style>
+
+<div class="thumbnail">
+    <h4 class="tensach">
+        @Model.TenSach
+    </h4>
+    <img src="~/Images/@Model.AnhBia" alt="@Model.TenSach">
+    <div class="motasach">
+        <p>
+            @Html.Raw(@Model.MoTa.ToString().Replace("\n", "</p><p>&nbsp&nbsp&nbsp&nbsp&nbsp"))
+        </p>
+    </div>
+    <p class="text-right">Ngày cập nhật: @Html.FormatValue(Model.NgayCapNhat, "{0:dd/MM/yyyy}")</p>
+    <p class="text-right">Giá bán: <span>@Html.FormatValue(Model.GiaBan, "{0:#,##0}") VNĐ</span></p>
+    <p class="text-right">
+        <a href="@Url.Action("ThemGioHang","GioHang", new { ms = Model.MaSach, url = Request.Url.ToString() })"
+           class="btn btn-primary" role="button">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Card
+        </a>
+    </p>
+</div>
+
